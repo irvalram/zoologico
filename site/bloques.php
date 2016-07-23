@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head>
     <title>Bloques</title>
     <center><img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/a2cdf511099589.560f194265a01.png"></center>
@@ -7,7 +8,7 @@
    <h1><div align="center">Lectura de la tabla </div></h1>
    <br>
    <?php //Comentario. Conexión con la base de datos
-       $enlace = mysql_connect ("iMac-de-soporte","root",""); //conexion a mysql
+       $enlace = mysql_connect ("127.0.0.1","root",""); //conexion a mysql
        mysql_select_db("dept_emp",$enlace); //conexion con la bd
        $result=mysql_db_query("dept_emp","SELECT * FROM dept" );
    ?>
