@@ -7,11 +7,24 @@
 <body>
    <h1><div align="center">Lectura de la tabla </div></h1>
    <br>
-   <?php //Comentario. Conexión con la base de datos
-       $enlace = mysql_connect ("127.0.0.1","root",""); //conexion a mysql
-       mysql_select_db("dept_emp",$enlace); //conexion con la bd
-       $result=mysql_db_query("dept_emp","SELECT * FROM dept" );
+
+   <?php
+DEFINE('DB_USER', 'studentweb');
+DEFINE('DB_PASSWORD', 'omaleycat');
+DEFINE('DB_HOST', 'localhost');
+DEFINE('DB_NAME', 'dept_emp');
+
+$enlace = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
+OR dies('No se pudo conectar a Mysql: ' .
+  mysqli_connect_error());
+
+      $query = "SELECT * FROM dept";
+      $result = @mysqli_query($enlace, $query);
+
+      // mysql_select_db("dept_emp",$enlace); //conexion con la bd
+       //$result=mysql_db_query("dept_emp","SELECT * FROM dept" );
    ?>
+   
    <table align="center" border=1>
    <tr>
       <th>Bloques</th>
@@ -19,13 +32,13 @@
       <th>Zona</th>
    </tr>
    <?php //Mostrar los registros
-      while($renglon=mysql_fetch_array($result))
+      while($renglon=mysqli_fetch_array($result))
       {
          echo '<tr><td>' . $renglon[0]. '</td>';
          echo     '<td>' . $renglon[1]. '</td>';    
          echo     '<td>' . $renglon[2]. '</td></tr>'; 
       }
-      mysql_free_result($result);
+      mysqli_free_result($result);
    ?>
    </table>
    <br><br>
